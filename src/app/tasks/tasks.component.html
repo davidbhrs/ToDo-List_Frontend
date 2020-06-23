@@ -1,10 +1,9 @@
-<div *ngIf="tasks != null">
-  
+<div *ngIf="tasklist != null">
     <table border="1px solid black">
-      <div *ngFor="let task of tasks.ownTasks">
+      <div *ngFor="let task of tasklist.ownTasks">
         <tr>
           <td>ID:</td>
-          <td><input [(ngModel)]="task.id"></td>
+          <td> {{ task.id }}</td>
         </tr>
         <tr>
           <td>Aufgabe:</td>
@@ -28,10 +27,10 @@
         </tr>
       </div>
       <tr>
-        <td colspan="2"><button (click)="updateTasks()">Speichern</button></td>
+        <td colspan="2"><button (click)="updateTasklist()">Speichern</button></td>
        </tr>
     </table>
     <br>
 </div>
 
-<div *ngIf="tasks == null">Sie können eine Aufgabenliste mit einem Klick auswählen.</div>
+<div *ngIf="tasklist == null">Sie können eine Aufgabenliste mit einem Klick auswählen.</div>

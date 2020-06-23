@@ -9,14 +9,14 @@ import { DatastorageService } from '../datastorage.service';
 export class TasksComponent implements OnInit {
 
   // variables
-  @Input() tasks: any = null;
+  @Input() tasklist: any = null;
 
   constructor(public datastorage: DatastorageService) { }
 
   ngOnInit(): void {
   }
 
-  updateTasks() {
-    this.datastorage.updateTasks(this.tasks);
+  updateTasklist() {
+    this.datastorage.updateTasklist(this.tasklist);
   }
 }
