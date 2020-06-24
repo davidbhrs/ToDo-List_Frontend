@@ -9,12 +9,14 @@ import { DatastorageService } from './datastorage.service';
 import { HttpClientModule } from '@angular/common/http';
 import { TasksComponent } from './tasks/tasks.component';
 import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TodolistComponent,
-    TasksComponent
+    TasksComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

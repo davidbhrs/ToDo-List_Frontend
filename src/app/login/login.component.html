@@ -1,0 +1,8 @@
+<form>
+  <input #username type="text" placeholder="Benutzername" (input)="inputUser[0]=username.value">
+  <br>
+  <input #password type="password" placeholder="Passwort" (input)="inputUser[1]=password.value">
+  <br>
+  <button (click)="showArray()">Anmelden</button>
+  <button>Registrieren</button>
+</form>

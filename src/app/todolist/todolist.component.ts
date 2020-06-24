@@ -26,7 +26,7 @@ export class TodolistComponent implements OnInit {
 
   // Gets all tasklists of an user
   getAllTasklists() {
-    this.datastorage.loadAllUser().subscribe(data => {
+    this.datastorage.loadTasklists().subscribe(data => {
       this.tasklists = data;
       //console.log(this.tasklists);
     });

@@ -19,4 +19,10 @@ export class TasksComponent implements OnInit {
   updateTasklist() {
     this.datastorage.updateTasklist(this.tasklist);
   }
+
+  deleteTasklist() {
+    this.datastorage.deleteTasklist(this.tasklist);
+    // unschön gelöst, besser die Auswahl irgendwie entfernen
+    window.location.reload();
+  }
 }

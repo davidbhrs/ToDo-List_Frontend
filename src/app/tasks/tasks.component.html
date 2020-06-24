@@ -1,5 +1,5 @@
 <div *ngIf="tasklist != null">
-    <table border="1px solid black">
+    <table>
       <div *ngFor="let task of tasklist.ownTasks">
         <tr>
           <td>ID:</td>
@@ -26,9 +26,12 @@
           <td><input [(ngModel)]="task.status"></td>
         </tr>
       </div>
-      <tr>
-        <td colspan="2"><button (click)="updateTasklist()">Speichern</button></td>
-       </tr>
+      <div>
+        <tr>
+          <td><button (click)="updateTasklist()">Speichern</button></td>
+          <td><button (click)="deleteTasklist()">Löschen</button></td>
+        </tr>
+      </div>
     </table>
     <br>
 </div>
