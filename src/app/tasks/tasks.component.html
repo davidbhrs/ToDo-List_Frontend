@@ -1,39 +1,42 @@
 <div *ngIf="tasklist != null">
-    <table>
-      <div *ngFor="let task of tasklist.ownTasks">
-        <tr>
-          <td>ID:</td>
-          <td> {{ task.id }}</td>
-        </tr>
-        <tr>
-          <td>Aufgabe:</td>
-          <td><input [(ngModel)]="task.taskname"></td>
-        </tr>
-        <tr>
-          <td>Beschreibung:</td>
-          <td><input [(ngModel)]="task.description"></td>
-        </tr>
-        <tr>
-          <td>Umfang:</td>
-          <td><input [(ngModel)]="task.scope"></td>
-        </tr>
-        <tr>
-          <td>Abgabetermin:</td>
-          <td><input [(ngModel)]="task.deadline"></td>
-        </tr>
-        <tr>
-          <td>Status:</td>
-          <td><input [(ngModel)]="task.status"></td>
-        </tr>
-      </div>
-      <div>
-        <tr>
-          <td><button (click)="updateTasklist()">Speichern</button></td>
-          <td><button (click)="deleteTasklist()">Löschen</button></td>
-        </tr>
-      </div>
-    </table>
-    <br>
+  <table>
+    <div *ngFor="let task of tasklist.ownTasks">
+      <tr>
+        <td>ID:</td>
+        <td> {{ task.id }}</td>
+      </tr>
+      <tr>
+        <td>Aufgabe:</td>
+        <td><input [(ngModel)]="task.taskname"></td>
+      </tr>
+      <tr>
+        <td>Beschreibung:</td>
+        <td><input [(ngModel)]="task.description"></td>
+      </tr>
+      <tr>
+        <td>Umfang:</td>
+        <td><input [(ngModel)]="task.scope"></td>
+      </tr>
+      <tr>
+        <td>Abgabetermin:</td>
+        <td><input [(ngModel)]="task.deadline"></td>
+      </tr>
+      <tr>
+        <td>Status:</td>
+        <td><input [(ngModel)]="task.status"></td>
+      </tr>
+      <tr>
+        <td><button (click)="deleteTask(tasklist.id, task.id)">Aufgabe löschen</button></td>
+      </tr>
+    </div>
+    <div>
+      <tr>
+        <td><button (click)="updateTasklist()">Speichern</button></td>
+        <td><button (click)="deleteTasklist()">ToDo-Liste löschen</button></td>
+        <td><button (click)="addTask()">Neue Aufgabe</button></td>
+      </tr>
+    </div>
+  </table>
 </div>
 
 <div *ngIf="tasklist == null">Sie können eine Aufgabenliste mit einem Klick auswählen.</div>

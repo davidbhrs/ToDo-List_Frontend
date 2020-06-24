@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { threadId } from 'worker_threads';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,10 @@ export class DatastorageService {
     return this.httpClient.get("/Perschke-Webanwendung/BACKEND/public/lists_user");
   }
 
+  loadAllTasks(): Observable<any> {
+    return this.httpClient.get("/Perschke-Webanwendung/BACKEND/public/tasks");
+  }
+
 
   /* PUT-Methods */
   updateTasklist(tasklist) {
@@ -28,5 +33,9 @@ export class DatastorageService {
   /* DELETE-Methods */
   deleteTasklist(tasklist) {
     this.httpClient.delete("/Perschke-Webanwendung/BACKEND/public/tasklist/" + tasklist.id, tasklist).subscribe();
+  }
+
+  deleteTask(tasklist_id, task_id) {
+    this.httpClient.delete("/Perschke-Webanwendung/BACKEND/public/task/" + tasklist_id + "/" + task_id).subscribe();
   }
 }
