@@ -14,6 +14,10 @@ export class TodolistComponent implements OnInit {
   // Variables
   tasklists: any[] = [];
   tasklist: any[] = null;
+  newTasklist = {
+    tasklist_name: "",
+    user_id: ""
+  }
 
 
   constructor(public datastorage: DatastorageService) { }
@@ -37,6 +41,13 @@ export class TodolistComponent implements OnInit {
   selectTasklist(selection) {
     this.tasklist = selection;
     console.log(this.tasklist);
+  }
+
+  createTasklist() {
+    // #####   STATISCH --> Muss nach Realisierung des Logins angepasst werden !!!   #####
+    this.newTasklist.user_id = "1"; 
+    this.datastorage.createTasklist(this.newTasklist);
+    window.location.reload();
   }
 
 }

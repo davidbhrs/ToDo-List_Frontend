@@ -4,3 +4,7 @@
   </li>
 </ul>
 <app-tasks [tasklist]="tasklist"></app-tasks>
+<br>
+<br>
+<input [(ngModel)]="newTasklist.tasklist_name">
+<button (click)="createTasklist()">Neue Aufgabenliste erstellen</button>
