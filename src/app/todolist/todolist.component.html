@@ -1,6 +1,6 @@
 <ul>
   <li *ngFor="let tasklist of tasklists" (click)="selectTasklist(tasklist)">
-    {{ tasklist.id }}
+    {{ tasklist.id }}: {{ tasklist.tasklist_name }}
   </li>
 </ul>
 <app-tasks [tasklist]="tasklist"></app-tasks>

@@ -33,10 +33,45 @@
       <tr>
         <td><button (click)="updateTasklist()">Speichern</button></td>
         <td><button (click)="deleteTasklist()">ToDo-Liste löschen</button></td>
-        <td><button (click)="addTask()">Neue Aufgabe</button></td>
+        <!--(de-)/activates the form to create a new task-->
+        <td>
+          <button *ngIf="showCreateNewTask === false" (click)="activateCreateTask()">Neue Aufgabe erstellen</button>
+          <button *ngIf="showCreateNewTask === true" (click)="activateCreateTask()">Neue Aufgabe schließen</button>
+        </td>
       </tr>
     </div>
   </table>
 </div>
+<!--Shows a new "form", if the user wants to create a new task-->
+<table *ngIf="showCreateNewTask === true">
+  <tr>
+    <td>Aufgabe:</td>
+    <td><input [(ngModel)]="newTask.taskname"></td>
+  </tr>
+  <tr>
+    <td>Beschreibung:</td>
+    <td><input [(ngModel)]="newTask.description"></td>
+  </tr>
+  <tr>
+    <td>Umfang:</td>
+    <td><input [(ngModel)]="newTask.scope"></td>
+  </tr>
+  <tr>
+    <td>Abgabetermin:</td>
+    <td><input [(ngModel)]="newTask.deadline"></td>
+  </tr>
+  <tr>
+    <td>Status:</td>
+    <td><input [(ngModel)]="newTask.status"></td>
+  </tr>
+  <!--<tr>
+    <td>Aufgabenliste:</td>
+    <td><input disabled="true" (value)="tasklist.id"></td>
+  </tr>-->
+  <tr>
+    <td><button (click)="createNewTask()">Neue Aufgabe speichern</button></td>
+  </tr>
+</table>
 
+<!--If no task is selected:-->
 <div *ngIf="tasklist == null">Sie können eine Aufgabenliste mit einem Klick auswählen.</div>

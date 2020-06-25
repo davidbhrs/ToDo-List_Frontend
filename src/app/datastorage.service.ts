@@ -25,6 +25,12 @@ export class DatastorageService {
   }
 
 
+  /* POST-Methods */
+  createTask(task) {
+    this.httpClient.post("/Perschke-Webanwendung/BACKEND/public/task", task).subscribe();
+  }
+
+
   /* PUT-Methods */
   updateTasklist(tasklist) {
     this.httpClient.put("/Perschke-Webanwendung/BACKEND/public/tasklist/" + tasklist.id, tasklist).subscribe(data => console.log(data));

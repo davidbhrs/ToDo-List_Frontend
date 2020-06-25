@@ -15,6 +15,7 @@ export class TodolistComponent implements OnInit {
   tasklists: any[] = [];
   tasklist: any[] = null;
 
+
   constructor(public datastorage: DatastorageService) { }
 
 
@@ -35,7 +36,7 @@ export class TodolistComponent implements OnInit {
   // select one tasklist of all tasklists from an user
   selectTasklist(selection) {
     this.tasklist = selection;
-    //console.log(this.tasks);
+    console.log(this.tasklist);
   }
 
 }

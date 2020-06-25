@@ -12,6 +12,15 @@ export class TasksComponent implements OnInit {
   // variables
   @Input() tasklist: any = null;
   @Input() allTasks: any = null;
+  showCreateNewTask: boolean = false;
+  newTask = {
+    taskname: "",
+    description: "",
+    scope: "",
+    deadline: "",
+    status: "",
+    tasklist_id: ""
+  };
   
 
   constructor(public datastorage: DatastorageService) { }
@@ -35,22 +44,13 @@ export class TasksComponent implements OnInit {
     // Auswahl beibehalten. Nur die Aufgabe sollte aus der aktuell ausgwählten Liste entfernt werden
   }
 
-  addTask() {
-    this.datastorage.loadAllTasks().subscribe(data => {
-      this.allTasks = data;
-      console.log(this.allTasks);
-    });
-    //let newID:any = this.allTasks[this.allTasks.length-1];
-    if(this.tasklist != null) {
-      this.tasklist.ownTasks.push({
-        //id: newID,
-        taskname: "",
-        description: "",
-        scope: "",
-        deadline: "",
-        status: "",
-        tasklist_id: this.tasklist.id
-      });
-    }
+  activateCreateTask() {
+    this.showCreateNewTask = this.showCreateNewTask != true;
+  }
+
+  createNewTask(){
+    this.newTask.tasklist_id = this.tasklist.id;
+    this.datastorage.createTask(this.newTask);
+    window.location.reload();
   }
 }
