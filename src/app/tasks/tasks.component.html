@@ -1,4 +1,6 @@
+
 <div *ngIf="tasklist != null">
+  <h1> {{ tasklist.tasklist_name }} </h1>
   <table>
     <div *ngFor="let task of tasklist.ownTasks">
       <tr>
@@ -74,4 +76,7 @@
 </table>
 
 <!--If no task is selected:-->
-<div *ngIf="tasklist == null">Sie können eine Aufgabenliste mit einem Klick auswählen.</div>
+<div *ngIf="tasklist == null">
+  <h1>Aufgabenlisten</h1>
+  <p>Sie können eine Aufgabenliste mit einem Klick auswählen.</p>
+</div>
