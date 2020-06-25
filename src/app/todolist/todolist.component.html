@@ -1,10 +1,19 @@
-<ul>
-  <li *ngFor="let tasklist of tasklists" (click)="selectTasklist(tasklist)">
-    {{ tasklist.id }}: {{ tasklist.tasklist_name }}
-  </li>
-</ul>
-<app-tasks [tasklist]="tasklist"></app-tasks>
-<br>
-<br>
-<input [(ngModel)]="newTasklist.tasklist_name">
-<button (click)="createTasklist()">Neue Aufgabenliste erstellen</button>
+<div class="wrapper">
+  <nav>
+    <h2>Navigation</h2>
+      <ul>
+        <li *ngFor="let tasklist of tasklists" (click)="selectTasklist(tasklist)">
+          {{ tasklist.id }}: {{ tasklist.tasklist_name }}
+        </li>
+      </ul>
+  </nav>
+  <main>
+    <h1>Aufgabenlisten</h1>
+    
+    <app-tasks [tasklist]="tasklist"></app-tasks>
+    <br>
+    <br>
+    <input [(ngModel)]="newTasklist.tasklist_name">
+    <button (click)="createTasklist()">Neue Aufgabenliste erstellen</button>
+  </main>
+</div>
