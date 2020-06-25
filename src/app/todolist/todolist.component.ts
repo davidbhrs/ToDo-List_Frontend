@@ -50,4 +50,9 @@ export class TodolistComponent implements OnInit {
     window.location.reload();
   }
 
+  deleteTasklist(tasklist) {
+    this.datastorage.deleteTasklist(tasklist);
+    // unschön gelöst, besser die Auswahl irgendwie entfernen
+    window.location.reload();
+  }
 }

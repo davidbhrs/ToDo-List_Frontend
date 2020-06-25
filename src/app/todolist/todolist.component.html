@@ -8,11 +8,12 @@
         <ul>
           <li *ngFor="let tasklist of tasklists" (click)="selectTasklist(tasklist)">
             {{ tasklist.tasklist_name }}
+            <button (click)="deleteTasklist(tasklist)">X</button>
           </li>
         </ul>
         <br><hr><br>
         <li>
-          <input [(ngModel)]="newTasklist.tasklist_name">
+          <input placeholder="Neuer Listenname" [(ngModel)]="newTasklist.tasklist_name">
           <button (click)="createTasklist()">Neue Aufgabenliste erstellen</button>
         </li>
       </ul>

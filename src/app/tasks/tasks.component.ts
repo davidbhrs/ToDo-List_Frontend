@@ -32,11 +32,12 @@ export class TasksComponent implements OnInit {
     this.datastorage.updateTasklist(this.tasklist);
   }
 
+  /*   Outsourced to todolist
   deleteTasklist() {
     this.datastorage.deleteTasklist(this.tasklist);
     // unschön gelöst, besser die Auswahl irgendwie entfernen
     window.location.reload();
-  }
+  }*/
 
   deleteTask(tasklist_id, task_id){
     this.datastorage.deleteTask(tasklist_id, task_id);
