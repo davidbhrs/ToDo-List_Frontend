@@ -1,12 +1,12 @@
 
 <div *ngIf="tasklist != null">
-  <h1> {{ tasklist.tasklist_name }} </h1>
+  <h1><input [(ngModel)]="tasklist.tasklist_name"></h1>
   <table>
     <div *ngFor="let task of tasklist.ownTasks">
-      <tr>
+      <!--<tr>
         <td>ID:</td>
         <td> {{ task.id }}</td>
-      </tr>
+      </tr>-->
       <tr>
         <td>Aufgabe:</td>
         <td><input [(ngModel)]="task.taskname"></td>
