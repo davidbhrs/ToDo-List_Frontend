@@ -1,3 +1,7 @@
+/**
+ * Main component (where everything put together)
+ * Processes the tasklists
+ */
 import { Component, OnInit } from '@angular/core';
 import { DatastorageService } from '../datastorage.service';
 
@@ -11,9 +15,12 @@ import { DatastorageService } from '../datastorage.service';
 
 export class TodolistComponent implements OnInit {
 
-  // Variables
+  /* Variables */
+  // all tasklists
   tasklists: any[] = [];
+  // selected tasklist
   tasklist: any[] = null;
+  // template for new tasklist
   newTasklist = {
     tasklist_name: "",
     user_id: ""
@@ -24,23 +31,21 @@ export class TodolistComponent implements OnInit {
 
 
   /* Methods */
-  
+  // on init load all tasklists for the navigation
   ngOnInit(): void {
     this.getAllTasklists();
   }
 
-  // Gets all tasklists of an user
+  // Gets all tasklists of an (at the moment static!) user
   getAllTasklists() {
     this.datastorage.loadTasklists().subscribe(data => {
       this.tasklists = data;
-      //console.log(this.tasklists);
     });
   }
 
-  // select one tasklist of all tasklists from an user
+  // select one tasklist of all tasklists from an user to show in tasksComponent
   selectTasklist(selection) {
     this.tasklist = selection;
-    console.log(this.tasklist);
   }
 
   createTasklist() {
