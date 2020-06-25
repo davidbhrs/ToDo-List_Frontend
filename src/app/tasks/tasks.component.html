@@ -1,7 +1,13 @@
-
+<!--
+  Tasklist-Template
+  Template for html-main part. (Everything on the right side under "Aufgabenlisten")
+-->
+<!--Shows only a tasklist, when it was selected by user-->
 <div *ngIf="tasklist != null">
+  <!--Tasklist-name with two-way-binding, for easy name changing-->
   <h1><input [(ngModel)]="tasklist.tasklist_name"></h1>
   <table>
+    <!--Shows every task with its attributes in selected tasklist-->
     <div *ngFor="let task of tasklist.ownTasks">
       <!--<tr>
         <td>ID:</td>
@@ -28,15 +34,18 @@
         <td><input [(ngModel)]="task.status"></td>
       </tr>
       <tr>
+        <!--Deletes the associated task (button under every task)-->
         <td><button (click)="deleteTask(tasklist.id, task.id)">Aufgabe löschen</button></td>
       </tr>
     </div>
     <div>
       <tr>
+        <!--Updates the WHOLE tasklist (tasklist_name and every task with their attributes)-->
         <td><button (click)="updateTasklist()">Speichern</button></td>
         <!--<td><button (click)="deleteTasklist()">ToDo-Liste löschen</button></td>-->
         <!--(de-)/activates the form to create a new task-->
         <td>
+          <!--Shows / hides the "form" to create a new task-->
           <button *ngIf="showCreateNewTask === false" (click)="activateCreateTask()">Neue Aufgabe erstellen</button>
           <button *ngIf="showCreateNewTask === true" (click)="activateCreateTask()">Neue Aufgabe schließen</button>
         </td>
@@ -71,6 +80,7 @@
     <td><input disabled="true" (value)="tasklist.id"></td>
   </tr>-->
   <tr>
+    <!--creates a new task with the values from the "form"-->
     <td><button (click)="createNewTask()">Neue Aufgabe speichern</button></td>
   </tr>
 </table>

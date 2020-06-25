@@ -1,3 +1,9 @@
+/**
+ * "Data-Acces-Service"
+ * Service to interact with backend
+ * (We can share variables and logic over this)
+ */
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
