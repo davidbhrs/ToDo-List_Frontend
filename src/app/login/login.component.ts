@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, Input } from '@angular/core';
 import { DatastorageService } from '../datastorage.service';
+import { timeStamp } from 'console';
 
 @Component({
   selector: 'app-login',
@@ -11,17 +12,21 @@ export class LoginComponent implements OnInit {
   // Variables
   inputUser: any[] = ["", ""]
   allUser: any[] = null;
+  allUserArr: any[] = null;
   //loggedin: boolean = false;
 
   constructor(public datastorage: DatastorageService) { }
 
   ngOnInit(): void {
+    this.getUsers();
   }
 
   login() {
-    this.datastorage.loadUsers().subscribe(data => {
-      this.allUser = data;
-    });
+    this.getUsers();
+    //console.log(this.allUser);
+    for (let user in this.allUser[1]) {
+      console.log(user);
+    }
     /*for (let user of this.allUser) {
       if (user.username == this.inputUser[0] && user.password == this.inputUser[1]) {
         
@@ -32,7 +37,10 @@ export class LoginComponent implements OnInit {
     }*/
   }
 
-  showArray() {
-    console.log(this.allUser);
+  getUsers() {
+    this.datastorage.loadUsers().subscribe(data => {
+      this.allUser = data;
+    });
   }
+
 }
