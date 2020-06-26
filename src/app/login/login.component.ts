@@ -10,22 +10,38 @@ import { timeStamp } from 'console';
 export class LoginComponent implements OnInit {
 
   // Variables
-  inputUser: any[] = ["", ""]
+  inputUser = {
+    name: "",
+    pwd: ""
+  }
   allUser: any[] = null;
-  allUserArr: any[] = null;
+  //allUserArr: any[] = null;
   //loggedin: boolean = false;
 
   constructor(public datastorage: DatastorageService) { }
 
   ngOnInit(): void {
     this.getUsers();
+    //console.log(this.allUser);   // --> OnInit sind allUsers null, bei manuellem Trigger ist das Array tatsächlich befüllt ???
   }
 
   login() {
     this.getUsers();
-    //console.log(this.allUser);
-    for (let user in this.allUser[1]) {
-      console.log(user);
+    console.log(this.inputUser);
+    for (let key of Object.keys(this.allUser)) {
+      if (this.allUser[key].username == this.inputUser.name) {
+        if (this.allUser[key].password == this.inputUser.pwd) {
+          console.log("Herzlich Willkommen " + this.allUser[key].username);
+        }
+        else {
+          console.log("Das eingegebene Passwort ist nicht korrekt");
+        }
+        break;
+      }
+      else {
+        console.log("Dieser Benutzer existiert nicht. Legen Sie doch jetzt ein neues Benutzerkonto an!");
+      }
+    
     }
     /*for (let user of this.allUser) {
       if (user.username == this.inputUser[0] && user.password == this.inputUser[1]) {

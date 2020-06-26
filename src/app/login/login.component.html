@@ -1,8 +1,8 @@
 <h3>Anmelden</h3>
 <form>
-  <input #username type="text" placeholder="Benutzername" (input)="inputUser[0]=username.value">
+  <input #username type="text" placeholder="Benutzername" (input)="inputUser.name=username.value">
   <br>
-  <input #password type="password" placeholder="Passwort" (input)="inputUser[1]=password.value">
+  <input #password type="password" placeholder="Passwort" (input)="inputUser.pwd=password.value">
   <br>
   <button (click)="login()">Anmelden</button>
   <button>Registrieren</button>
