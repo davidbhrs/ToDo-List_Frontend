@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, Input } from '@angular/core';
 import { DatastorageService } from '../datastorage.service';
-import { timeStamp } from 'console';
+// import { timeStamp } from 'console';
 
 @Component({
   selector: 'app-login',

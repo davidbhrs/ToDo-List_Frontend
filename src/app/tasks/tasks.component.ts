@@ -38,6 +38,7 @@ export class TasksComponent implements OnInit {
 
   // update the selected tasklist with new values (PUT-Request)
   updateTasklist() {
+    console.log(this.tasklist);
     this.datastorage.updateTasklist(this.tasklist);
   }
 
