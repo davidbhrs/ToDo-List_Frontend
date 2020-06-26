@@ -7,7 +7,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-//import { threadId } from 'worker_threads';  ?? Woher kommt das ??
+//import { threadId } from 'worker_threads';  //?? Woher kommt das ??
 
 @Injectable({
   providedIn: 'root'
@@ -43,6 +43,7 @@ export class DatastorageService {
 
   /* PUT-Methods */
   updateTasklist(tasklist) {
+    //console.log(tasklist);
     this.httpClient.put("/Perschke-Webanwendung/BACKEND/public/tasklist/" + tasklist.id, tasklist).subscribe(data => console.log(data));
   }
 
