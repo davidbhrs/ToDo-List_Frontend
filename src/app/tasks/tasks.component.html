@@ -9,29 +9,38 @@
   <table>
     <!--Shows every task with its attributes in selected tasklist-->
     <div *ngFor="let task of tasklist.ownTasks">
+      <div style="display: none;" [hidden]="deactivateDoneTasks(task)"></div>
       <!--<tr>
         <td>ID:</td>
         <td> {{ task.id }}</td>
       </tr>-->
       <tr>
         <td>Aufgabe:</td>
-        <td><input [(ngModel)]="task.taskname"></td>
+        <td><input [disabled]="taskDone" [(ngModel)]="task.taskname"></td>
       </tr>
       <tr>
         <td>Beschreibung:</td>
-        <td><input [(ngModel)]="task.description"></td>
+        <td><input [disabled]="taskDone" [(ngModel)]="task.description"></td>
       </tr>
       <tr>
         <td>Umfang:</td>
-        <td><input [(ngModel)]="task.scope"></td>
+        <td><input [disabled]="taskDone" [(ngModel)]="task.scope"></td>
       </tr>
       <tr>
         <td>Abgabetermin:</td>
-        <td><input [(ngModel)]="task.deadline"></td>
+        <td><input [disabled]="taskDone" [(ngModel)]="task.deadline"></td>
       </tr>
       <tr>
         <td>Status:</td>
-        <td><input [(ngModel)]="task.status"></td>
+        <!--<td><input [disabled]="taskDone" [(ngModel)]="task.status"></td>-->
+        <td>
+          <select [(ngModel)]="task.status" [disabled]="taskDone">
+            <option value="offen" [selected]="task.status == 'offen'">offen</option>
+            <option value="In Bearbeitung" [selected]="task.status == 'In Bearbeitung'">In Bearbeitung</option>
+            <option value="erledigt" [selected]="task.status == 'erledigt'">erledigt</option>
+            <option value="verspätet erledigt" [selected]="task.status == 'verspätet erledigt'">verspätet erledigt</option>
+          </select>
+        </td>
       </tr>
       <tr>
         <!--Deletes the associated task (button under every task)-->

@@ -29,6 +29,7 @@ export class TasksComponent implements OnInit {
     status: "",
     tasklist_id: ""
   };
+  taskDone: boolean = false;
   
 
   constructor(public datastorage: DatastorageService) { }
@@ -38,7 +39,6 @@ export class TasksComponent implements OnInit {
 
   // update the selected tasklist with new values (PUT-Request)
   updateTasklist() {
-    console.log(this.tasklist);
     this.datastorage.updateTasklist(this.tasklist);
   }
 
@@ -68,5 +68,16 @@ export class TasksComponent implements OnInit {
     // creates a single task. The selected task ist given as parameter
     this.datastorage.createTask(this.newTask);
     window.location.reload();
+  }
+
+  deactivateDoneTasks(task) {
+    this.taskDone = false;
+    if (task.status == "verspätet erledigt" || task.status == "erledigt") {
+      this.taskDone = true;
+    }
+    else {
+      this.taskDone = false;
+    }
+    return false;
   }
 }

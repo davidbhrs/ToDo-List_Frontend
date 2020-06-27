@@ -44,7 +44,7 @@ export class DatastorageService {
   /* PUT-Methods */
   updateTasklist(tasklist) {
     //console.log(tasklist);
-    this.httpClient.put("/Perschke-Webanwendung/BACKEND/public/tasklist/" + tasklist.id, tasklist).subscribe(data => console.log(data));
+    this.httpClient.put("/Perschke-Webanwendung/BACKEND/public/tasklist/" + tasklist.id, tasklist).subscribe();
   }
 
   /* DELETE-Methods */

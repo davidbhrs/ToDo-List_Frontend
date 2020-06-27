@@ -15,7 +15,6 @@ export class LoginComponent implements OnInit {
     pwd: ""
   }
   allUser: any[] = null;
-  //allUserArr: any[] = null;
   //loggedin: boolean = false;
 
   constructor(public datastorage: DatastorageService) { }
@@ -43,14 +42,6 @@ export class LoginComponent implements OnInit {
       }
     
     }
-    /*for (let user of this.allUser) {
-      if (user.username == this.inputUser[0] && user.password == this.inputUser[1]) {
-        
-      }
-      else {
-
-      }
-    }*/
   }
 
   getUsers() {
