@@ -30,6 +30,13 @@ export class TasksComponent implements OnInit {
     tasklist_id: ""
   };
   taskDone: boolean = false;
+  scopeMeaning = {
+    1: "unwichtig",
+    2: "neutral",
+    3: "wichtig",
+    4: "sehr wichtig",
+    5: "kritisch"
+  };
   
 
   constructor(public datastorage: DatastorageService) { }
