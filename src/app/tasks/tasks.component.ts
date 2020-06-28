@@ -4,6 +4,7 @@
 
 import { Component, OnInit, Output, Input } from '@angular/core';
 import { DatastorageService } from '../datastorage.service';
+import {formatDate } from '@angular/common';
 //import { TodolistComponent } from '../todolist/todolist.component'   <-- not good, because leads to recursion Warnings in console (should get variables from todolist)
 
 @Component({
@@ -37,6 +38,7 @@ export class TasksComponent implements OnInit {
     4: "sehr wichtig",
     5: "kritisch"
   };
+  //date = formatDate('2020-06-17 00:00:00', 'yyyy-MM-dd', 'en-US');
   
 
   constructor(public datastorage: DatastorageService) { }
@@ -87,4 +89,5 @@ export class TasksComponent implements OnInit {
     }
     return false;
   }
+
 }
