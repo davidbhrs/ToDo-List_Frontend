@@ -68,15 +68,21 @@
   </tr>
   <tr>
     <td>Umfang:</td>
-    <td><input [(ngModel)]="newTask.scope"></td>
+    <td><input type="range" min="1" max="5" [(ngModel)]="newTask.scope"> {{newTask.scope}}: {{scopeMeaning[newTask.scope]}} </td>
   </tr>
   <tr>
     <td>Abgabetermin:</td>
-    <td><input [(ngModel)]="newTask.deadline"></td>
+    <td><input type="date" [(ngModel)]="newTask.deadline"></td>
   </tr>
   <tr>
     <td>Status:</td>
-    <td><input [(ngModel)]="newTask.status"></td>
+    <select [(ngModel)]="newTask.status">
+      <option value="offen">offen</option>
+      <option value="In Bearbeitung" >In Bearbeitung</option>
+      <option value="erledigt">erledigt</option>
+      <option value="verspätet erledigt">verspätet erledigt</option>
+    </select>
+    <!--<td><input [(ngModel)]="newTask.status"></td>-->
   </tr>
   <tr>
     <!--creates a new task with the values from the "form"-->

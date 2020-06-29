@@ -32,6 +32,7 @@ export class TasksComponent implements OnInit {
   };
   taskDone: boolean = false;
   scopeMeaning = {
+    "": "keine Auswahl",
     1: "unwichtig",
     2: "neutral",
     3: "wichtig",
@@ -67,13 +68,6 @@ export class TasksComponent implements OnInit {
     }
   }
 
-  /*   Outsourced to todolist
-  deleteTasklist() {
-    this.datastorage.deleteTasklist(this.tasklist);
-    // unschön gelöst, besser die Auswahl irgendwie entfernen
-    window.location.reload();
-  }*/
-
   // deletes an (single) associated task (DELETE-Request)
   deleteTask(tasklist_id, task_id){
     this.datastorage.deleteTask(tasklist_id, task_id);
@@ -88,11 +82,24 @@ export class TasksComponent implements OnInit {
 
   // creates a new task (POST-Request)
   createNewTask(){
-    // task assigned to actual tasklist
-    this.newTask.tasklist_id = this.tasklist.id;
-    // creates a single task. The selected task ist given as parameter
-    this.datastorage.createTask(this.newTask);
-    window.location.reload();
+    let valide = true;
+    let statusArr = ["offen", "In Bearbeitung", "erledigt", "verspätet erledigt"];
+    // looks for a letter
+    if (!/\S/.test(this.newTask.taskname)) {
+      valide = false;
+      window.alert("Sie müssen der Aufgabe einen Namen geben!");
+    }
+    if (this.newTask.status == "") {
+      valide = false;
+      window.alert("Die Aufgabe benötigt einen Status!");
+    }
+    if (valide) {
+      // task assigned to actual tasklist
+      this.newTask.tasklist_id = this.tasklist.id;
+      // creates a single task. The selected task ist given as parameter
+      this.datastorage.createTask(this.newTask);
+      window.location.reload();
+    }
   }
 
   deactivateDoneTasks(task) {

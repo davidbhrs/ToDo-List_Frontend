@@ -50,9 +50,16 @@ export class TodolistComponent implements OnInit {
 
   createTasklist() {
     // #####   STATISCH --> Muss nach Realisierung des Logins angepasst werden !!!   #####
-    this.newTasklist.user_id = "1"; 
-    this.datastorage.createTasklist(this.newTasklist);
-    window.location.reload();
+    let valide = true;
+    if (!/\S/.test(this.newTasklist.tasklist_name)) {
+      valide = false;
+      window.alert("Sie müssen Ihrer Aufgabenliste einen Namen geben!");
+    }
+    if (valide) {
+      this.newTasklist.user_id = "1"; 
+      this.datastorage.createTasklist(this.newTasklist);
+      window.location.reload();
+    }
   }
 
   deleteTasklist(tasklist) {
