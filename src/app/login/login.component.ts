@@ -2,6 +2,10 @@ import { Component, OnInit, Output, Input } from '@angular/core';
 import { DatastorageService } from '../datastorage.service';
 // import { timeStamp } from 'console';
 
+import sha256 from 'crypto-js/sha256';
+var CryptoJS = require("crypto-js");
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -27,9 +31,15 @@ export class LoginComponent implements OnInit {
   login() {
     this.getUsers();
     console.log(this.inputUser);
+
     for (let key of Object.keys(this.allUser)) {
       if (this.allUser[key].username == this.inputUser.name) {
-        if (this.allUser[key].password == this.inputUser.pwd) {
+        
+        var hashpwd = CryptoJS.SHA256(this.inputUser.pwd); //konvertiert zu sha256
+
+        //console.log(hashpwd.toString());
+
+        if (this.allUser[key].password == hashpwd) {
           console.log("Herzlich Willkommen " + this.allUser[key].username);
         }
         else {
