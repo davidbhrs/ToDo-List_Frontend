@@ -17,7 +17,7 @@ export class TasksComponent implements OnInit {
   /* Variables */
   // selected tasklist from todolist 
   @Input() tasklist: any = null;
-  // all tasks in tasklist 
+  // ??? Wofür ist das hier überhaupt ???
   @Input() allTasks: any = null;
   // boolean to activate the form to create a new task
   showCreateNewTask: boolean = false;
@@ -39,7 +39,12 @@ export class TasksComponent implements OnInit {
     4: "sehr wichtig",
     5: "kritisch"
   };
-  //date = formatDate('2020-06-17 00:00:00', 'yyyy-MM-dd', 'en-US');
+
+  hiddenFilterForm: boolean = true;
+  filterBool: boolean = false;
+  scopeFilterValue: number = 0;
+  filteredTasks: any = [];
+  
   
 
   constructor(public datastorage: DatastorageService) { }
@@ -107,10 +112,20 @@ export class TasksComponent implements OnInit {
     if (task.status == "verspätet erledigt" || task.status == "erledigt") {
       this.taskDone = true;
     }
-    else {
-      this.taskDone = false;
+    return this.taskDone;
+  }
+
+  activateFilterForm () {
+    this.hiddenFilterForm = this.hiddenFilterForm != true;
+  }
+
+  filtering () {
+    
+    for (let key of Object.keys(this.tasklist.ownTasks)) {
+      if (this.tasklist.ownTasks[key].scope == this.scopeFilterValue) {
+        this.filteredTasks.push(this.tasklist.ownTasks[key]);
+      }
     }
-    return false;
   }
 
 }

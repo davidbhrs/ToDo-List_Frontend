@@ -6,25 +6,52 @@
 <div *ngIf="tasklist != null">
   <!--Tasklist-name with two-way-binding, for easy name changing-->
   <h1><input [(ngModel)]="tasklist.tasklist_name"></h1>
+  <div>
+    <button (click)="activateFilterForm()">Filterung</button>
+    <div [hidden]="hiddenFilterForm">
+      <!--<input id="filterCheckScope" type="checkbox" >
+      <label for="filterCheckScope">Umfang</label>
+      <input id="filterCheckStatus" type="checkbox">
+      <label for="filterCheckStatus">Status</label>-->
+      <div>
+        <select [(ngModel)]="scopeFilterValue">
+          <!--<option value="0">Wählen Sie einen Filter</option>-->
+          <option value="1">1: {{scopeMeaning[1]}}</option>
+          <option value="2">2: {{scopeMeaning[2]}}</option>
+          <option value="3">3: {{scopeMeaning[3]}}</option>
+          <option value="4">4: {{scopeMeaning[4]}}</option>
+          <option value="5">5: {{scopeMeaning[5]}}</option>
+        </select>
+      </div>
+      <!--<select>
+        <option value="offen" selected>offen</option>
+        <option value="In Bearbeitung">In Bearbeitung</option>
+        <option value="erledigt">erledigt</option>
+        <option value="verspätet erledigt">verspätet erledigt</option>
+      </select>-->
+      <button (click)="filtering()">Übernehmen</button>
+    </div>
+  </div>
+  <hr>
   <table>
     <!--Shows every task with its attributes in selected tasklist-->
     <div *ngFor="let task of tasklist.ownTasks">
-      <div style="display: none;" [hidden]="deactivateDoneTasks(task)"></div>
+      <!--<div style="display: none;" [hidden]="deactivateDoneTasks(task)"></div>-->
       <tr>
         <td>Aufgabe:</td>
-        <td><input [disabled]="taskDone" [(ngModel)]="task.taskname"></td>
+        <td> <input [disabled]="deactivateDoneTasks(task)" [(ngModel)]="task.taskname"></td>
       </tr>
       <tr>
         <td>Beschreibung:</td>
-        <td><input [disabled]="taskDone" [(ngModel)]="task.description"></td>
+        <td><input [disabled]="deactivateDoneTasks(task)" [(ngModel)]="task.description"></td>
       </tr>
       <tr>
         <td>Umfang:</td>
-        <td><input type="range" min="1" max="5" [disabled]="taskDone" [(ngModel)]="task.scope"> {{task.scope}}: {{scopeMeaning[task.scope]}} </td>
+        <td><input type="range" min="1" max="5" [disabled]="deactivateDoneTasks(task)" [(ngModel)]="task.scope"> {{task.scope}}: {{scopeMeaning[task.scope]}} </td>
       </tr>
       <tr>
         <td>Abgabetermin:</td>
-        <td><input type="date" datetime="yyyy-MM-dd" [disabled]="taskDone" [(ngModel)]="task.deadline"></td> 
+        <td><input type="date" datetime="yyyy-MM-dd" [disabled]="deactivateDoneTasks(task)" [(ngModel)]="task.deadline"></td> 
       </tr>
       <tr>
         <td>Status:</td>
