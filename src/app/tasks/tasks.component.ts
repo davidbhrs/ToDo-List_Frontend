@@ -48,7 +48,23 @@ export class TasksComponent implements OnInit {
 
   // update the selected tasklist with new values (PUT-Request)
   updateTasklist() {
-    this.datastorage.updateTasklist(this.tasklist);
+    let valide = true;
+    for (let task of this.tasklist.ownTasks) {
+      // looks for a letter
+      if (!/\S/.test(task.taskname)) {
+        valide = false;
+        window.alert("Jede Aufgabe muss einen Namen haben!");
+        break;
+      }
+    }
+    // looks for letter
+    if (!/\S/.test(this.tasklist.tasklist_name)) {
+      valide = false;
+      window.alert("Sie müssen Ihrer Aufgabenliste einen Namen geben!");
+    }
+    if (valide) {
+      this.datastorage.updateTasklist(this.tasklist);
+    }
   }
 
   /*   Outsourced to todolist

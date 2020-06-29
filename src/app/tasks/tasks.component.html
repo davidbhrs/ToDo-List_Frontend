@@ -10,10 +10,6 @@
     <!--Shows every task with its attributes in selected tasklist-->
     <div *ngFor="let task of tasklist.ownTasks">
       <div style="display: none;" [hidden]="deactivateDoneTasks(task)"></div>
-      <!--<tr>
-        <td>ID:</td>
-        <td> {{ task.id }}</td>
-      </tr>-->
       <tr>
         <td>Aufgabe:</td>
         <td><input [disabled]="taskDone" [(ngModel)]="task.taskname"></td>
@@ -51,8 +47,6 @@
       <tr>
         <!--Updates the WHOLE tasklist (tasklist_name and every task with their attributes)-->
         <td><button (click)="updateTasklist()">Speichern</button></td>
-        <!--<td><button (click)="deleteTasklist()">ToDo-Liste löschen</button></td>-->
-        <!--(de-)/activates the form to create a new task-->
         <td>
           <!--Shows / hides the "form" to create a new task-->
           <button *ngIf="showCreateNewTask === false" (click)="activateCreateTask()">Neue Aufgabe erstellen</button>
@@ -84,10 +78,6 @@
     <td>Status:</td>
     <td><input [(ngModel)]="newTask.status"></td>
   </tr>
-  <!--<tr>
-    <td>Aufgabenliste:</td>
-    <td><input disabled="true" (value)="tasklist.id"></td>
-  </tr>-->
   <tr>
     <!--creates a new task with the values from the "form"-->
     <td><button (click)="createNewTask()">Neue Aufgabe speichern</button></td>
