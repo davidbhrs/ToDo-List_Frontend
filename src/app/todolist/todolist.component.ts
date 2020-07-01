@@ -44,6 +44,7 @@ export class TodolistComponent implements OnInit {
     this.datastorage.loadTasklists(user_id).subscribe(data => {
       this.tasklists = data;
     });
+    console.log('works');
   }
 
   // select one tasklist of all tasklists from an user to show in tasksComponent
@@ -55,9 +56,7 @@ export class TodolistComponent implements OnInit {
     // #####   STATISCH --> Muss nach Realisierung des Logins angepasst werden !!!   #####
     this.newTasklist.user_id = user_id; 
     this.datastorage.createTasklist(this.newTasklist);
-    
-    this.getAllTasklists(user_id);
-    this.datastorage.loadTasklists(user_id);
+    setTimeout(() => {this.getAllTasklists(user_id)}, 3000);
   }
 
   deleteTasklist(tasklist, user_id) {
