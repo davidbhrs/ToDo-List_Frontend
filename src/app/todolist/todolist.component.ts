@@ -44,7 +44,6 @@ export class TodolistComponent implements OnInit {
     this.datastorage.loadTasklists(user_id).subscribe(data => {
       this.tasklists = data;
     });
-    console.log('works');
   }
 
   // select one tasklist of all tasklists from an user to show in tasksComponent
@@ -56,15 +55,15 @@ export class TodolistComponent implements OnInit {
     // #####   STATISCH --> Muss nach Realisierung des Logins angepasst werden !!!   #####
     this.newTasklist.user_id = user_id; 
     this.datastorage.createTasklist(this.newTasklist);
-    setTimeout(() => {this.getAllTasklists(user_id)}, 3000);
+    setTimeout(() => {this.getAllTasklists(user_id)}, 50);
   }
 
   deleteTasklist(tasklist, user_id) {
+    console.log(this.tasklists);
     this.datastorage.deleteTasklist(tasklist);
     // unschön gelöst, besser die Auswahl irgendwie entfernen
-    this.getAllTasklists(user_id);
-    
-  }b 
+    setTimeout(() => {this.getAllTasklists(user_id)}, 50);
+  } 
   setIDfromLogin(datas){
     this.user_id = datas;
     this.getAllTasklists(this.user_id);

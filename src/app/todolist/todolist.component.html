@@ -13,7 +13,7 @@
         <ul>
           <li *ngFor="let tasklist of tasklists" (click)="selectTasklist(tasklist)">
             {{ tasklist.tasklist_name }}
-            <button (click)="deleteTasklist(tasklist)">X</button>
+            <button (click)="deleteTasklist(tasklist, user_id)">X</button>
           </li>
         </ul>
         <br><hr><br>
