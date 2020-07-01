@@ -5,9 +5,13 @@
 <!--Shows only a tasklist, when it was selected by user-->
 <div *ngIf="tasklist != null">
   <!--Tasklist-name with two-way-binding, for easy name changing-->
-  <h1><input [(ngModel)]="tasklist.tasklist_name"></h1>
+  <h1>
+    <mat-form-field>
+      <input matInput [(ngModel)]="tasklist.tasklist_name">
+    </mat-form-field>
+  </h1>
   <div>
-    <button (click)="activateFilterForm()">Filterung</button>
+    <button mat-raised-button color="basic" (click)="activateFilterForm()">Filterung</button>
     <div [hidden]="hiddenFilterForm">
       <!--<input id="filterCheckScope" type="checkbox" >
       <label for="filterCheckScope">Umfang</label>
@@ -29,7 +33,7 @@
         <option value="erledigt">erledigt</option>
         <option value="verspätet erledigt">verspätet erledigt</option>
       </select>-->
-      <button (click)="filtering()">Übernehmen</button>
+      <button mat-raised-button color="accent" (click)="filtering()">Übernehmen</button>
     </div>
   </div>
   <hr>
@@ -39,11 +43,19 @@
       <!--<div style="display: none;" [hidden]="deactivateDoneTasks(task)"></div>-->
       <tr>
         <td>Aufgabe:</td>
-        <td> <input [disabled]="deactivateDoneTasks(task)" [(ngModel)]="task.taskname"></td>
+        <td>
+          <mat-form-field>
+            <input matInput [disabled]="deactivateDoneTasks(task)" [(ngModel)]="task.taskname">
+          </mat-form-field>
+        </td>
       </tr>
       <tr>
         <td>Beschreibung:</td>
-        <td><input [disabled]="deactivateDoneTasks(task)" [(ngModel)]="task.description"></td>
+        <td>
+          <mat-form-field>
+            <input matInput [disabled]="deactivateDoneTasks(task)" [(ngModel)]="task.description">
+          </mat-form-field>
+        </td>
       </tr>
       <tr>
         <td>Umfang:</td>
@@ -51,33 +63,39 @@
       </tr>
       <tr>
         <td>Abgabetermin:</td>
-        <td><input type="date" datetime="yyyy-MM-dd" [disabled]="deactivateDoneTasks(task)" [(ngModel)]="task.deadline"></td> 
+        <td>
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker1" [disabled]="deactivateDoneTasks(task)" [(ngModel)]="task.deadline">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+        </td> 
       </tr>
       <tr>
         <td>Status:</td>
         <!--<td><input [disabled]="taskDone" [(ngModel)]="task.status"></td>-->
         <td>
-          <select [(ngModel)]="task.status" [disabled]="taskDone">
-            <option value="offen" [selected]="task.status == 'offen'">offen</option>
-            <option value="In Bearbeitung" [selected]="task.status == 'In Bearbeitung'">In Bearbeitung</option>
-            <option value="erledigt" [selected]="task.status == 'erledigt'">erledigt</option>
-            <option value="verspätet erledigt" [selected]="task.status == 'verspätet erledigt'">verspätet erledigt</option>
-          </select>
+          <mat-select [(ngModel)]="task.status" [disabled]="taskDone">
+            <mat-option value="offen" >offen</mat-option>
+            <mat-option value="In Bearbeitung" >In Bearbeitung</mat-option>
+            <mat-option value="erledigt">erledigt</mat-option>
+            <mat-option value="verspätet erledigt">verspätet erledigt</mat-option>
+          </mat-select>
         </td>
       </tr>
       <tr>
         <!--Deletes the associated task (button under every task)-->
-        <td><button (click)="deleteTask(tasklist.id, task.id)">Aufgabe löschen</button></td>
+        <td><button mat-raised-button color="warn" (click)="deleteTask(tasklist.id, task.id)">Aufgabe löschen</button></td>
       </tr>
     </div>
     <div>
       <tr>
         <!--Updates the WHOLE tasklist (tasklist_name and every task with their attributes)-->
-        <td><button (click)="updateTasklist()">Speichern</button></td>
+        <td><button mat-raised-button color="primary" (click)="updateTasklist()">Speichern</button></td>
         <td>
           <!--Shows / hides the "form" to create a new task-->
-          <button *ngIf="showCreateNewTask === false" (click)="activateCreateTask()">Neue Aufgabe erstellen</button>
-          <button *ngIf="showCreateNewTask === true" (click)="activateCreateTask()">Neue Aufgabe schließen</button>
+          <button mat-raised-button color="basic" *ngIf="showCreateNewTask === false" (click)="activateCreateTask()">Neue Aufgabe erstellen</button>
+          <button mat-raised-button color="basic" *ngIf="showCreateNewTask === true" (click)="activateCreateTask()">Neue Aufgabe schließen</button>
         </td>
       </tr>
     </div>
@@ -95,7 +113,11 @@
   </tr>
   <tr>
     <td>Umfang:</td>
-    <td><input type="range" min="1" max="5" [(ngModel)]="newTask.scope"> {{newTask.scope}}: {{scopeMeaning[newTask.scope]}} </td>
+    <td>
+      <mat-slider [min]="1" [max]="5" [(ngModel)]="newTask.scope">
+      </mat-slider>
+    </td>
+    <td><input type="range" min="1" max="5" [(ngModel)]="newTask.scope"> {{newTask.scope}}: {{scopeMeaning[newTask.scope]}}</td>
   </tr>
   <tr>
     <td>Abgabetermin:</td>
@@ -113,7 +135,7 @@
   </tr>
   <tr>
     <!--creates a new task with the values from the "form"-->
-    <td><button (click)="createNewTask()">Neue Aufgabe speichern</button></td>
+    <td><button mat-raised-button color="accent" (click)="createNewTask()">Neue Aufgabe speichern</button></td>
   </tr>
 </table>
 
