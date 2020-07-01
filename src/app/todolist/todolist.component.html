@@ -7,7 +7,7 @@
   <nav>
     <h2>Navigation</h2>
       <ul>
-        <li><app-login></app-login></li>
+        <li><app-login (event)='setIDfromLogin($event)'></app-login></li>
         <br><hr><br>
         <li><h3>Aufgabenlisten:</h3></li>
         <ul>
@@ -19,7 +19,7 @@
         <br><hr><br>
         <li>
           <input placeholder="Neuer Listenname" [(ngModel)]="newTasklist.tasklist_name">
-          <button (click)="createTasklist()">Neue Aufgabenliste erstellen</button>
+          <button (click)="createTasklist(user_id)">Neue Aufgabenliste erstellen</button>
         </li>
       </ul>
   </nav>

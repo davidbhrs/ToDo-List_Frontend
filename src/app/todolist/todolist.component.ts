@@ -2,8 +2,9 @@
  * Main component (where everything put together)
  * Processes the tasklists
  */
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { DatastorageService } from '../datastorage.service';
+import { threadId } from 'worker_threads';
 
 
 
@@ -26,19 +27,21 @@ export class TodolistComponent implements OnInit {
     user_id: ""
   }
 
+  public user_id: string;
 
   constructor(public datastorage: DatastorageService) { }
 
+  //@Output() event: EventEmitter<string> = new EventEmitter();
 
   /* Methods */
   // on init load all tasklists for the navigation
   ngOnInit(): void {
-    this.getAllTasklists();
+    this.getAllTasklists(this.user_id);
   }
 
   // Gets all tasklists of an (at the moment static!) user
-  getAllTasklists() {
-    this.datastorage.loadTasklists().subscribe(data => {
+  getAllTasklists(user_id) {
+    this.datastorage.loadTasklists(user_id).subscribe(data => {
       this.tasklists = data;
     });
   }
@@ -48,16 +51,27 @@ export class TodolistComponent implements OnInit {
     this.tasklist = selection;
   }
 
-  createTasklist() {
+  createTasklist(user_id) {
     // #####   STATISCH --> Muss nach Realisierung des Logins angepasst werden !!!   #####
-    this.newTasklist.user_id = "1"; 
+    this.newTasklist.user_id = user_id; 
     this.datastorage.createTasklist(this.newTasklist);
-    window.location.reload();
+    
+    this.getAllTasklists(user_id);
+    this.datastorage.loadTasklists(user_id);
   }
 
-  deleteTasklist(tasklist) {
+  deleteTasklist(tasklist, user_id) {
     this.datastorage.deleteTasklist(tasklist);
     // unschön gelöst, besser die Auswahl irgendwie entfernen
-    window.location.reload();
+    this.getAllTasklists(user_id);
+    
+  }b 
+  setIDfromLogin(datas){
+    this.user_id = datas;
+    this.getAllTasklists(this.user_id);
+
   }
+
+
 }
+

@@ -17,9 +17,10 @@ export class DatastorageService {
   constructor(private httpClient: HttpClient) { }
 
   /* GET-Methods */
-  loadTasklists(): Observable<any> {
+  loadTasklists(user_id): Observable<any> {
     // lädt aktuell nur den User mit der ID = 1. 
-    return this.httpClient.get("/Perschke-Webanwendung/BACKEND/public/tasklists?user_id=1");
+    let groot: string = user_id
+    return this.httpClient.get("/Perschke-Webanwendung/BACKEND/public/tasklists?user_id=" + user_id);// change by variable!
   }
 
   loadUsers(): Observable<any> {
