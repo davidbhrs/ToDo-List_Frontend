@@ -12,35 +12,6 @@
           <input matInput [(ngModel)]="tasklist.tasklist_name">
         </mat-form-field>
       </h1>
-      <div>
-        <button mat-raised-button color="basic" (click)="activateFilterForm()">Filterung</button>
-        <div [hidden]="hiddenFilterForm">
-          <!--<input id="filterCheckScope" type="checkbox" >
-          <label for="filterCheckScope">Umfang</label>
-          <input id="filterCheckStatus" type="checkbox">
-          <label for="filterCheckStatus">Status</label>-->
-          <div>
-            <select [(ngModel)]="scopeFilterValue">
-              <!--<option value="0">Wählen Sie einen Filter</option>-->
-              <option value="1">1: {{scopeMeaning[1]}}</option>
-              <option value="2">2: {{scopeMeaning[2]}}</option>
-              <option value="3">3: {{scopeMeaning[3]}}</option>
-              <option value="4">4: {{scopeMeaning[4]}}</option>
-              <option value="5">5: {{scopeMeaning[5]}}</option>
-            </select>
-          </div>
-          <!--<select>
-            <option value="offen" selected>offen</option>
-            <option value="In Bearbeitung">In Bearbeitung</option>
-            <option value="erledigt">erledigt</option>
-            <option value="verspätet erledigt">verspätet erledigt</option>
-          </select>-->
-          <button mat-raised-button color="accent" (click)="filtering()">Übernehmen</button>
-        </div>
-      </div>
-      <br>
-      <mat-divider></mat-divider>
-      <br>
       <table>
         <!--Shows every task with its attributes in selected tasklist-->
         <div *ngFor="let task of tasklist.ownTasks">
@@ -91,6 +62,9 @@
             <!--Deletes the associated task (button under every task)-->
             <td><button mat-raised-button color="warn" [disabled]="deactivateDoneTasks(task)" (click)="deleteTask(tasklist.id, task.id)">Aufgabe löschen</button></td>
           </tr>
+          <br>
+          <mat-divider></mat-divider>
+          <br>
         </div>
         <div>
           <tr>
@@ -106,13 +80,6 @@
       </table>
     </div>
 
-
-
-
-
-
-
-
     <!--Shows a new "form", if the user wants to create a new task-->
     <table *ngIf="showCreateNewTask === true">
       <tr>
@@ -127,7 +94,7 @@
         <td>Beschreibung:</td>
         <td>
           <mat-form-field>
-            <input matInput placeholder="Beschreibung" [(ngModel)]="newTask.description">
+            <textarea matInput placeholder="Beschreibung" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" [(ngModel)]="newTask.description"></textarea> 
           </mat-form-field> 
         </td>
       </tr>
