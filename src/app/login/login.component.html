@@ -1,13 +1,15 @@
-<h3>Anmelden</h3>
-<form>
-  <mat-form-field>
-    <input matInput #username type="text" placeholder="Benutzername" (input)="inputUser.name=username.value">
-  </mat-form-field>
-  <br>
-  <mat-form-field>
-    <input matInput  #password type="password" placeholder="Passwort" (input)="inputUser.pwd=password.value">
-  </mat-form-field>
-  <br>
-  <button mat-raised-button color="primary" (click)="login()">Anmelden</button>
-  <button mat-raised-button color="basic">Registrieren</button>
-</form>
+<div class="mat-app-background">
+  <h3>Anmelden</h3>
+  <form>
+    <mat-form-field>
+      <input matInput #username type="text" placeholder="Benutzername" (input)="inputUser.name=username.value">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input matInput  #password type="password" placeholder="Passwort" (input)="inputUser.pwd=password.value">
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="primary" (click)="login()">Anmelden</button>
+    <button mat-raised-button color="basic">Registrieren</button>
+  </form>
+</div>
