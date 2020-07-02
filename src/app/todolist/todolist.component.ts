@@ -2,7 +2,7 @@
  * Main component (where everything put together)
  * Processes the tasklists
  */
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { DatastorageService } from '../datastorage.service';
 import { threadId } from 'worker_threads';
 
@@ -49,7 +49,6 @@ export class TodolistComponent implements OnInit {
   // select one tasklist of all tasklists from an user to show in tasksComponent
   selectTasklist(selection) {
     this.tasklist = selection;
-    console.log(selection);
   }
 
   createTasklist(user_id) {
@@ -60,7 +59,6 @@ export class TodolistComponent implements OnInit {
   }
 
   deleteTasklist(tasklist, user_id) {
-    console.log(this.tasklists);
     this.datastorage.deleteTasklist(tasklist);
     // unschön gelöst, besser die Auswahl irgendwie entfernen
     setTimeout(() => {this.getAllTasklists(user_id)}, 50);

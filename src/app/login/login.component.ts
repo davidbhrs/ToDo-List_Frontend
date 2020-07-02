@@ -35,9 +35,6 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.getUsers();
-    console.log(this.inputUser);
-    console.log(this.allUser);
-
     for (let key of Object.keys(this.allUser)) {
       var errorMessage = true;
       if (this.allUser[key].username == this.inputUser.name) {
@@ -47,7 +44,7 @@ export class LoginComponent implements OnInit {
         //console.log(hashpwd.toString());
 
         if (this.allUser[key].password == hashpwd) {
-          console.log("Herzlich Willkommen " + this.allUser[key].username);
+          alert("Herzlich Willkommen " + this.allUser[key].username);
           errorMessage = false;
           this.login_id = this.allUser[key].id;
           this.sendToParent(this.login_id);
@@ -84,7 +81,6 @@ export class LoginComponent implements OnInit {
 
   sendToParent(login_id){
     this.event.emit(login_id);
-    console.log("Event summited" + " " + login_id)
   };
 
 

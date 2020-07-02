@@ -7,6 +7,8 @@ import { DatastorageService } from '../datastorage.service';
 //import { TodolistComponent } from '../todolist/todolist.component'   <-- not good, because leads to recursion Warnings in console (should get variables from todolist)
 import { TodolistComponent } from '../todolist/todolist.component'
 
+
+
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
@@ -14,7 +16,10 @@ import { TodolistComponent } from '../todolist/todolist.component'
 })
 export class TasksComponent implements OnInit {
 
+
+  
   /* Variables */
+  @Input() user_id : string = "";
   // selected tasklist from todolist 
   @Input() tasklist: any = null;
   // all tasks in tasklist 
@@ -54,8 +59,10 @@ export class TasksComponent implements OnInit {
   // deletes an (single) associated task (DELETE-Request)
   deleteTask(tasklist_id, task_id){
     this.datastorage.deleteTask(tasklist_id, task_id);
-    window.location.reload();
     // Auswahl beibehalten. Nur die Aufgabe sollte aus der aktuell ausgwählten Liste entfernt werden
+    this.showCreateNewTask = false;
+    this.Todolist.selectTasklist(null);
+    setTimeout(() => {this.Todolist.getAllTasklists(this.user_id)}, 100);
   }
 
   // activates the form to create a new task
@@ -71,10 +78,7 @@ export class TasksComponent implements OnInit {
     this.datastorage.createTask(this.newTask);
     this.showCreateNewTask = false;
     this.Todolist.selectTasklist(null);
-    setTimeout(() => {this.datastorage.loadAllTasks()}, 100);;
-    //this.datastorage.loadTasklists();
-    
-    
-    //window.location.reload();
+    setTimeout(() => {this.Todolist.getAllTasklists(this.user_id)}, 100);;
+
   }
 }
