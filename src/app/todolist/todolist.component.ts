@@ -49,6 +49,7 @@ export class TodolistComponent implements OnInit {
   // select one tasklist of all tasklists from an user to show in tasksComponent
   selectTasklist(selection) {
     this.tasklist = selection;
+    console.log(selection);
   }
 
   createTasklist(user_id) {
@@ -63,6 +64,8 @@ export class TodolistComponent implements OnInit {
     this.datastorage.deleteTasklist(tasklist);
     // unschön gelöst, besser die Auswahl irgendwie entfernen
     setTimeout(() => {this.getAllTasklists(user_id)}, 50);
+    setTimeout(() => {this.selectTasklist(null)}, 50);
+    
   } 
   setIDfromLogin(datas){
     this.user_id = datas;

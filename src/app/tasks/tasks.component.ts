@@ -5,6 +5,7 @@
 import { Component, OnInit, Output, Input } from '@angular/core';
 import { DatastorageService } from '../datastorage.service';
 //import { TodolistComponent } from '../todolist/todolist.component'   <-- not good, because leads to recursion Warnings in console (should get variables from todolist)
+import { TodolistComponent } from '../todolist/todolist.component'
 
 @Component({
   selector: 'app-tasks',
@@ -31,7 +32,7 @@ export class TasksComponent implements OnInit {
   };
   
 
-  constructor(public datastorage: DatastorageService) { }
+  constructor(public datastorage: DatastorageService, public Todolist: TodolistComponent) { }
 
   ngOnInit(): void {
   }
@@ -40,6 +41,7 @@ export class TasksComponent implements OnInit {
   updateTasklist() {
     console.log(this.tasklist);
     this.datastorage.updateTasklist(this.tasklist);
+    alert("Liste wurde aktualisiert.")
   }
 
   /*   Outsourced to todolist
@@ -67,6 +69,12 @@ export class TasksComponent implements OnInit {
     this.newTask.tasklist_id = this.tasklist.id;
     // creates a single task. The selected task ist given as parameter
     this.datastorage.createTask(this.newTask);
-    window.location.reload();
+    this.showCreateNewTask = false;
+    this.Todolist.selectTasklist(null);
+    setTimeout(() => {this.datastorage.loadAllTasks()}, 100);;
+    //this.datastorage.loadTasklists();
+    
+    
+    //window.location.reload();
   }
 }
