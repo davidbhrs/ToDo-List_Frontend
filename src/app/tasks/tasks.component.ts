@@ -6,6 +6,9 @@ import { Component, OnInit, Output, Input } from '@angular/core';
 import { DatastorageService } from '../datastorage.service';
 import {formatDate } from '@angular/common';
 //import { TodolistComponent } from '../todolist/todolist.component'   <-- not good, because leads to recursion Warnings in console (should get variables from todolist)
+import { TodolistComponent } from '../todolist/todolist.component'
+
+
 
 @Component({
   selector: 'app-tasks',
@@ -14,7 +17,10 @@ import {formatDate } from '@angular/common';
 })
 export class TasksComponent implements OnInit {
 
+
+  
   /* Variables */
+  @Input() user_id : string = "";
   // selected tasklist from todolist 
   @Input() tasklist: any = null;
   // ??? Wofür ist das hier überhaupt ???
@@ -47,7 +53,7 @@ export class TasksComponent implements OnInit {
   
   
 
-  constructor(public datastorage: DatastorageService) { }
+  constructor(public datastorage: DatastorageService, public Todolist: TodolistComponent) { }
 
   ngOnInit(): void {
   }
@@ -70,14 +76,17 @@ export class TasksComponent implements OnInit {
     }
     if (valide) {
       this.datastorage.updateTasklist(this.tasklist);
+      alert("Liste wurde aktualisiert.")
     }
   }
 
   // deletes an (single) associated task (DELETE-Request)
   deleteTask(tasklist_id, task_id){
     this.datastorage.deleteTask(tasklist_id, task_id);
-    window.location.reload();
     // Auswahl beibehalten. Nur die Aufgabe sollte aus der aktuell ausgwählten Liste entfernt werden
+    this.showCreateNewTask = false;
+    this.Todolist.selectTasklist(null);
+    setTimeout(() => {this.Todolist.getAllTasklists(this.user_id)}, 100);
   }
 
   // activates the form to create a new task
@@ -99,11 +108,12 @@ export class TasksComponent implements OnInit {
       window.alert("Die Aufgabe benötigt einen Status!");
     }
     if (valide) {
-      // task assigned to actual tasklist
       this.newTask.tasklist_id = this.tasklist.id;
       // creates a single task. The selected task ist given as parameter
       this.datastorage.createTask(this.newTask);
-      window.location.reload();
+      this.showCreateNewTask = false;
+      this.Todolist.selectTasklist(null);
+      setTimeout(() => {this.Todolist.getAllTasklists(this.user_id)}, 100);
     }
   }
 
