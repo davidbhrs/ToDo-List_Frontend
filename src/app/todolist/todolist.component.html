@@ -3,20 +3,30 @@
   Contains nearly all relevant html (navigation & tasklists)
   PROBLEM: data acces, when navigation is an own component (therfore nav & main together)
 -->
+
+
 <div class="wrapper mat-app-background">
   <nav>
-    <h2>Navigation</h2>
+    <mat-card>
+      <mat-card-content>
+        <h2>Navigation</h2>
       <ul>
         <li><app-login></app-login></li>
-        <br><hr><br>
+        <br>
+        <mat-divider></mat-divider>
+        <br>
         <li><h3>Aufgabenlisten:</h3></li>
         <ul>
           <li *ngFor="let tasklist of tasklists" (click)="selectTasklist(tasklist)">
             {{ tasklist.tasklist_name }}
-            <button mat-button color="warn" (click)="deleteTasklist(tasklist)">X</button>
+            <button mat-icon-button color="warn" (click)="deleteTasklist(tasklist)">
+              <mat-icon>delete</mat-icon>
+            </button>
           </li>
         </ul>
-        <br><hr><br>
+        <br>
+        <mat-divider></mat-divider>
+        <br>
         <li>
           <mat-form-field>
             <input matInput placeholder="Neuer Listenname" [(ngModel)]="newTasklist.tasklist_name">
@@ -24,11 +34,12 @@
           <button mat-raised-button color="primary" (click)="createTasklist()">Neue Aufgabenliste erstellen</button>
         </li>
       </ul>
+      </mat-card-content>
+      
+    </mat-card>
+    
   </nav>
   <main>
     <app-tasks [tasklist]="tasklist"></app-tasks>
-    <br>
-    <br>
-    
   </main>
 </div>
