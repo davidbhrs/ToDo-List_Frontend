@@ -1,5 +1,6 @@
-import { Component, OnInit, Output, Input } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { DatastorageService } from '../datastorage.service';
+import { TodolistComponent } from '../todolist/todolist.component';
 // import { timeStamp } from 'console';
 
 import sha256 from 'crypto-js/sha256';
@@ -21,6 +22,9 @@ export class LoginComponent implements OnInit {
   allUser: any[] = null;
   //loggedin: boolean = false;
 
+  public login_id = '0';
+  @Output() event: EventEmitter<string> = new EventEmitter();
+
   constructor(public datastorage: DatastorageService) { }
 
   ngOnInit(): void {
@@ -30,9 +34,8 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.getUsers();
-    console.log(this.inputUser);
-
     for (let key of Object.keys(this.allUser)) {
+      var errorMessage = true;
       if (this.allUser[key].username == this.inputUser.name) {
         
         var hashpwd = CryptoJS.SHA256(this.inputUser.pwd); //konvertiert zu sha256
@@ -40,17 +43,24 @@ export class LoginComponent implements OnInit {
         //console.log(hashpwd.toString());
 
         if (this.allUser[key].password == hashpwd) {
-          console.log("Herzlich Willkommen " + this.allUser[key].username);
+          alert("Herzlich Willkommen " + this.allUser[key].username);
+          errorMessage = false;
+          this.login_id = this.allUser[key].id;
+          this.sendToParent(this.login_id);
+          
         }
         else {
-          console.log("Das eingegebene Passwort ist nicht korrekt");
+          alert("Das eingegebene Passwort ist nicht korrekt");
+          errorMessage = false;
         }
         break;
       }
       else {
-        console.log("Dieser Benutzer existiert nicht. Legen Sie doch jetzt ein neues Benutzerkonto an!");
+        
       }
-    
+    }
+    if (errorMessage == true){
+      alert("Der User exisitert nicht!")
     }
   }
 
@@ -59,5 +69,10 @@ export class LoginComponent implements OnInit {
       this.allUser = data;
     });
   }
+
+  sendToParent(login_id){
+    this.event.emit(login_id);
+  };
+
 
 }

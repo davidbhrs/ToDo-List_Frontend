@@ -7,24 +7,24 @@
   <nav>
     <h2>Navigation</h2>
       <ul>
-        <li><app-login></app-login></li>
+        <li><app-login (event)='setIDfromLogin($event)'></app-login></li>
         <br><hr><br>
         <li><h3>Aufgabenlisten:</h3></li>
         <ul>
           <li *ngFor="let tasklist of tasklists" (click)="selectTasklist(tasklist)">
             {{ tasklist.tasklist_name }}
-            <button (click)="deleteTasklist(tasklist)">X</button>
+            <button (click)="deleteTasklist(tasklist, user_id)">X</button>
           </li>
         </ul>
         <br><hr><br>
         <li>
           <input placeholder="Neuer Listenname" [(ngModel)]="newTasklist.tasklist_name">
-          <button (click)="createTasklist()">Neue Aufgabenliste erstellen</button>
+          <button (click)="createTasklist(user_id)">Neue Aufgabenliste erstellen</button>
         </li>
       </ul>
   </nav>
   <main>
-    <app-tasks [tasklist]="tasklist"></app-tasks>
+    <app-tasks [tasklist]="tasklist" [user_id]= "user_id" ></app-tasks>
     <br>
     <br>
     

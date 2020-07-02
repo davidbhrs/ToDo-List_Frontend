@@ -67,7 +67,7 @@
       </tr>
       <tr>
         <!--Deletes the associated task (button under every task)-->
-        <td><button (click)="deleteTask(tasklist.id, task.id)">Aufgabe löschen</button></td>
+        <td><button [disabled]="deactivateDoneTasks(task)" (click)="deleteTask(tasklist.id, task.id)">Aufgabe löschen</button></td>
       </tr>
     </div>
     <div>
