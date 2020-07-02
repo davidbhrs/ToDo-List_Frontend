@@ -34,7 +34,7 @@
           </tr>
           <tr>
             <td>Umfang:</td>
-            <td><input type="range" min="1" max="5" [disabled]="deactivateDoneTasks(task)" [(ngModel)]="task.scope"> {{task.scope}}: {{scopeMeaning[task.scope]}} </td>
+            <td><mat-slider color=primary min="1" max="5" [disabled]="deactivateDoneTasks(task)" [(ngModel)]="task.scope"></mat-slider> {{task.scope}}: {{scopeMeaning[task.scope]}} </td>
           </tr>
           <tr>
             <td>Abgabetermin:</td>
@@ -101,7 +101,7 @@
       <tr>
         <td>Umfang:</td>
         <td>
-          <mat-slider [min]="1" [max]="5" [(ngModel)]="newTask.scope">
+          <mat-slider color=primary [min]="1" [max]="5" [(ngModel)]="newTask.scope">
           </mat-slider>
           {{newTask.scope}}: {{scopeMeaning[newTask.scope]}}
         </td>

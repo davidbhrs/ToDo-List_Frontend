@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   public login_id = '0';
   @Output() event: EventEmitter<string> = new EventEmitter();
 
-  constructor(public datastorage: DatastorageService) { }
+  constructor(public datastorage: DatastorageService, public todoList: TodolistComponent) { }
 
   ngOnInit(): void {
     this.getUsers();
@@ -62,6 +62,7 @@ export class LoginComponent implements OnInit {
     if (errorMessage == true){
       alert("Der User exisitert nicht!")
     }
+    //this.todoList.selectTasklist(null);
   }
 
   getUsers() {
