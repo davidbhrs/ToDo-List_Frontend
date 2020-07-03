@@ -12,7 +12,7 @@
           <input matInput [(ngModel)]="tasklist.tasklist_name">
         </mat-form-field>
       </h1>
-      <table>
+      <table id="tableTasklist">
         <!--Shows every task with its attributes in selected tasklist-->
         <div *ngFor="let task of tasklist.ownTasks">
           <!--<div style="display: none;" [hidden]="deactivateDoneTasks(task)"></div>-->
@@ -86,7 +86,7 @@
       <tr>
         <td>Aufgabe:</td>
         <td>
-          <mat-form-field>
+          <mat-form-field class="newTasklist">
             <input matInput placeholder="Aufgabenname" [(ngModel)]="newTask.taskname">
           </mat-form-field> 
         </td>
@@ -94,7 +94,7 @@
       <tr>
         <td>Beschreibung:</td>
         <td>
-          <mat-form-field>
+          <mat-form-field class="newTasklist">
             <textarea matInput placeholder="Beschreibung" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" [(ngModel)]="newTask.description"></textarea> 
           </mat-form-field> 
         </td>
@@ -111,7 +111,7 @@
       <tr>
         <td>Abgabetermin:</td>
         <td>
-          <mat-form-field>
+          <mat-form-field class="newTasklist">
             <input matInput [matDatepicker]="picker2" [(ngModel)]="newTask.deadline">
             <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
             <mat-datepicker #picker2></mat-datepicker>
