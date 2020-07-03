@@ -38,13 +38,7 @@
           </tr>
           <tr>
             <td>Abgabetermin:</td>
-            <td>
-              <mat-form-field class="tasklist">
-                <input matInput [matDatepicker]="picker1" [disabled]="deactivateDoneTasks(task)" [(ngModel)]="task.deadline">
-                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                <mat-datepicker #picker1></mat-datepicker>
-              </mat-form-field>
-            </td> 
+            <td><input type="date" datetime="yyyy-MM-dd" [disabled]="deactivateDoneTasks(task)" [(ngModel)]="task.deadline"></td> 
           </tr>
           <tr>
             <td>Status:</td>
@@ -110,13 +104,7 @@
       </tr>
       <tr>
         <td>Abgabetermin:</td>
-        <td>
-          <mat-form-field class="newTasklist">
-            <input matInput [matDatepicker]="picker2" [(ngModel)]="newTask.deadline">
-            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-            <mat-datepicker #picker2></mat-datepicker>
-          </mat-form-field>
-        </td>
+        <td><input type="date" [(ngModel)]="newTask.deadline"></td>
       </tr>
       <tr>
         <td>Status:</td>
