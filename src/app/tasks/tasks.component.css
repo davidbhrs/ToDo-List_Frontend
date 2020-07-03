@@ -3,7 +3,7 @@
     padding-right: 5%;
 }
 
-table {
+#tableTasklist {
     display: table;
     width: 80%;
     table-layout: fixed;
@@ -29,4 +29,8 @@ td {
 
 #tasklistName {
     width: 80% !important;
+}
+
+.newTasklist {
+    width: 170% !important;
 }
