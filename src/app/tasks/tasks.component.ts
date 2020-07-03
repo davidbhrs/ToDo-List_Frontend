@@ -148,4 +148,33 @@ export class TasksComponent implements OnInit {
         .subscribe(() => this.autosize.resizeToFitContent(true));
   }
 
+
+  exitCompare(a, b) {
+    if ( a.id < b.id ){
+      return -1;
+    }
+    if ( a.id > b.id ){
+      return 1;
+    }
+    return 0; 
+  }
+
+  compareDeadlineAsc(a, b) {
+    if ( new Date (a.deadline) < new Date(b.deadline) ){
+      return -1;
+    }
+    if ( new Date (a.deadline) > new Date(b.deadline) ){
+      return 1;
+    }
+    return 0; 
+  }
+  compareDeadlineDesc(a, b) {
+    if ( new Date (a.deadline) < new Date(b.deadline) ){
+      return 1;
+    }
+    if ( new Date (a.deadline) > new Date(b.deadline) ){
+      return -1;
+    }
+    return 0; 
+  }
 }

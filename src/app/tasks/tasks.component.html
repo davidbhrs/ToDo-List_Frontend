@@ -12,6 +12,9 @@
           <input matInput [(ngModel)]="tasklist.tasklist_name">
         </mat-form-field>
       </h1>
+      <button (click)="tasklist.ownTasks.sort(exitCompare)">Sortierung entfernen</button>
+      <button (click)="tasklist.ownTasks.sort(compareDeadlineAsc)">Sortierung nach Dringlichkeit aufsteigend</button>
+      <button (click)="tasklist.ownTasks.sort(compareDeadlineDesc)">Sortierung nach Dringlichkeit absteigend</button>
       <table id="tableTasklist">
         <!--Shows every task with its attributes in selected tasklist-->
         <div *ngFor="let task of tasklist.ownTasks">
