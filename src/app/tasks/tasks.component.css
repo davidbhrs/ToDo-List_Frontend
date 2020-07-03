@@ -34,3 +34,9 @@ td {
 .newTasklist {
     width: 170% !important;
 }
+
+.symButton2 {
+    margin-left: 7px;
+    margin-right: 7px;
+    margin-bottom: 20px;
+}
