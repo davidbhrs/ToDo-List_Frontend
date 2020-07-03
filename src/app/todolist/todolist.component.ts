@@ -28,6 +28,7 @@ export class TodolistComponent implements OnInit {
   }
 
   public user_id: string;
+  loggedIn: boolean = true;
 
   constructor(public datastorage: DatastorageService) { }
 
@@ -75,6 +76,7 @@ export class TodolistComponent implements OnInit {
   setIDfromLogin(datas){
     this.user_id = datas;
     this.getAllTasklists(this.user_id);
+    this.loggedIn = false;
 
   }
 

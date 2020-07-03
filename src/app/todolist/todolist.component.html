@@ -27,11 +27,11 @@
           <br>
           <mat-divider></mat-divider>
           <br>
-          <li>
+          <li >
             <mat-form-field>
-              <input matInput placeholder="Neuer Listenname" [(ngModel)]="newTasklist.tasklist_name">
+              <input matInput placeholder="Neuer Listenname" [(ngModel)]="newTasklist.tasklist_name" >
             </mat-form-field>
-            <button mat-raised-button color="primary" (click)="createTasklist(user_id)">Neue Aufgabenliste erstellen</button>
+            <button mat-raised-button color="primary" (click)="createTasklist(user_id)" [disabled]="loggedIn">Neue Aufgabenliste erstellen</button>
           </li>
         </ul>
       </mat-card-content>

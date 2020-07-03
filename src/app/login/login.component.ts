@@ -1,9 +1,12 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { DatastorageService } from '../datastorage.service';
 import { TodolistComponent } from '../todolist/todolist.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 // import { timeStamp } from 'console';
 
 import sha256 from 'crypto-js/sha256';
+import { ITS_JUST_ANGULAR } from '@angular/core/src/r3_symbols';
 var CryptoJS = require("crypto-js");
 
 
@@ -24,6 +27,9 @@ export class LoginComponent implements OnInit {
 
   public login_id = '0';
   @Output() event: EventEmitter<string> = new EventEmitter();
+
+  notLogged : boolean = true;
+  logged : boolean = false;
 
   constructor(public datastorage: DatastorageService, public todoList: TodolistComponent) { }
 
@@ -47,7 +53,8 @@ export class LoginComponent implements OnInit {
           errorMessage = false;
           this.login_id = this.allUser[key].id;
           this.sendToParent(this.login_id);
-          
+          this.notLogged = false;
+          this.logged = true;
         }
         else {
           alert("Das eingegebene Passwort ist nicht korrekt");
@@ -74,6 +81,10 @@ export class LoginComponent implements OnInit {
   sendToParent(login_id){
     this.event.emit(login_id);
   };
+
+  logout() {
+    window.location.reload();
+  }
 
 
 }
