@@ -4,11 +4,11 @@
 -->
 <!--Shows only a tasklist, when it was selected by user-->
 <mat-card>
-  <div>
+  <div id="tasks"> 
     <div *ngIf="tasklist != null">
       <!--Tasklist-name with two-way-binding, for easy name changing-->
       <h1>
-        <mat-form-field>
+        <mat-form-field id="tasklistName">
           <input matInput [(ngModel)]="tasklist.tasklist_name">
         </mat-form-field>
       </h1>
@@ -19,7 +19,7 @@
           <tr>
             <td>Aufgabe:</td>
             <td>
-              <mat-form-field>
+              <mat-form-field class="tasklist">
                 <input matInput [disabled]="deactivateDoneTasks(task)" [(ngModel)]="task.taskname" placeholder="Aufgabenname">
               </mat-form-field>
             </td>
@@ -27,7 +27,7 @@
           <tr>
             <td>Beschreibung:</td>
             <td>
-              <mat-form-field >
+              <mat-form-field class="tasklist">
                 <input matInput [disabled]="deactivateDoneTasks(task)" [(ngModel)]="task.description" placeholder="Beschreibung">
               </mat-form-field>
             </td>
@@ -39,7 +39,7 @@
           <tr>
             <td>Abgabetermin:</td>
             <td>
-              <mat-form-field>
+              <mat-form-field class="tasklist">
                 <input matInput [matDatepicker]="picker1" [disabled]="deactivateDoneTasks(task)" [(ngModel)]="task.deadline">
                 <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                 <mat-datepicker #picker1></mat-datepicker>
@@ -58,9 +58,10 @@
               </mat-select>
             </td>
           </tr>
+          <br>
           <tr>
             <!--Deletes the associated task (button under every task)-->
-            <td><button mat-raised-button color="warn" [disabled]="deactivateDoneTasks(task)" (click)="deleteTask(tasklist.id, task.id)">Aufgabe löschen</button></td>
+            <td colspan="2"><button mat-raised-button color="warn" [disabled]="deactivateDoneTasks(task)" (click)="deleteTask(tasklist.id, task.id)">Aufgabe löschen</button></td>
           </tr>
           <br>
           <mat-divider></mat-divider>
@@ -69,17 +70,17 @@
         <div>
           <tr>
             <!--Updates the WHOLE tasklist (tasklist_name and every task with their attributes)-->
-            <td><button mat-raised-button color="primary" (click)="updateTasklist()">Speichern</button></td>
-            <td>
+            <td colspan="2">
+              <button class="symButton" mat-raised-button color="primary" (click)="updateTasklist()">Speichern</button>
               <!--Shows / hides the "form" to create a new task-->
-              <button mat-raised-button color="basic" *ngIf="showCreateNewTask === false" (click)="activateCreateTask()">Neue Aufgabe erstellen</button>
-              <button mat-raised-button color="basic" *ngIf="showCreateNewTask === true" (click)="activateCreateTask()">Neue Aufgabe schließen</button>
+              <button class="symButton" mat-raised-button color="basic" *ngIf="showCreateNewTask === false" (click)="activateCreateTask()">Neue Aufgabe erstellen</button>
+              <button class="symButton" mat-raised-button color="basic" *ngIf="showCreateNewTask === true" (click)="activateCreateTask()">Neue Aufgabe schließen</button>
             </td>
           </tr>
         </div>
       </table>
     </div>
-
+    <br>
     <!--Shows a new "form", if the user wants to create a new task-->
     <table *ngIf="showCreateNewTask === true">
       <tr>
@@ -129,9 +130,10 @@
         </td>
         <!--<td><input [(ngModel)]="newTask.status"></td>-->
       </tr>
+      <br>
       <tr>
         <!--creates a new task with the values from the "form"-->
-        <td><button mat-raised-button color="accent" (click)="createNewTask()">Neue Aufgabe speichern</button></td>
+        <td colspan="2"><button mat-raised-button color="accent" (click)="createNewTask()">Neue Aufgabe speichern</button></td>
       </tr>
     </table>
   
