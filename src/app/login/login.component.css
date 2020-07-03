@@ -1,3 +1,7 @@
 * {
-    background-color: #424242;
+    background-color: #fff;
+}
+
+#loginButton {
+    margin-right: 10px;
 }

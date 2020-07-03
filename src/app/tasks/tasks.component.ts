@@ -2,11 +2,13 @@
  * Component to process all task.
  */
 
-import { Component, OnInit, Output, Input } from '@angular/core';
+import {CdkTextareaAutosize} from '@angular/cdk/text-field';
+import { Component, OnInit, Output, Input, NgZone, ViewChild } from '@angular/core';
 import { DatastorageService } from '../datastorage.service';
 import {formatDate } from '@angular/common';
 //import { TodolistComponent } from '../todolist/todolist.component'   <-- not good, because leads to recursion Warnings in console (should get variables from todolist)
 import { TodolistComponent } from '../todolist/todolist.component'
+import {take} from 'rxjs/operators';
 
 
 
@@ -53,7 +55,9 @@ export class TasksComponent implements OnInit {
   
   
 
-  constructor(public datastorage: DatastorageService, public Todolist: TodolistComponent) { }
+  constructor(public datastorage: DatastorageService, public Todolist: TodolistComponent, private _ngZone: NgZone) { }
+
+  @ViewChild('autosize') autosize: CdkTextareaAutosize;
 
   ngOnInit(): void {
   }
@@ -136,6 +140,12 @@ export class TasksComponent implements OnInit {
         this.filteredTasks.push(this.tasklist.ownTasks[key]);
       }
     }
+  }
+
+  triggerResize() {
+    // Wait for changes to be applied, then trigger textarea resize.
+    this._ngZone.onStable.pipe(take(1))
+        .subscribe(() => this.autosize.resizeToFitContent(true));
   }
 
 }

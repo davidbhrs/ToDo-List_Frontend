@@ -10,34 +10,32 @@
     <mat-card>
       <mat-card-content>
         <h2>Navigation</h2>
-      <ul>
-        <li><app-login (event)='setIDfromLogin($event)'></app-login></li>
-        <br>
-        <mat-divider></mat-divider>
-        <br>
-        <li><h3>Aufgabenlisten:</h3></li>
         <ul>
-          <li *ngFor="let tasklist of tasklists" (click)="selectTasklist(tasklist)">
-            {{ tasklist.tasklist_name }}
-            <button mat-icon-button color="warn" (click)="deleteTasklist(tasklist, user_id)">
-              <mat-icon>delete</mat-icon>
-            </button>
+          <li><app-login (event)='setIDfromLogin($event)'></app-login></li>
+          <br>
+          <mat-divider></mat-divider>
+          <br>
+          <li><h3>Aufgabenlisten:</h3></li>
+          <ul>
+            <li *ngFor="let tasklist of tasklists" (click)="selectTasklist(tasklist)">
+              {{ tasklist.tasklist_name }}
+              <button mat-icon-button color="warn" (click)="deleteTasklist(tasklist, user_id)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </li>
+          </ul>
+          <br>
+          <mat-divider></mat-divider>
+          <br>
+          <li>
+            <mat-form-field>
+              <input matInput placeholder="Neuer Listenname" [(ngModel)]="newTasklist.tasklist_name">
+            </mat-form-field>
+            <button mat-raised-button color="primary" (click)="createTasklist(user_id)">Neue Aufgabenliste erstellen</button>
           </li>
         </ul>
-        <br>
-        <mat-divider></mat-divider>
-        <br>
-        <li>
-          <mat-form-field>
-            <input matInput placeholder="Neuer Listenname" [(ngModel)]="newTasklist.tasklist_name">
-          </mat-form-field>
-          <button mat-raised-button color="primary" (click)="createTasklist(user_id)">Neue Aufgabenliste erstellen</button>
-        </li>
-      </ul>
       </mat-card-content>
-      
     </mat-card>
-    
   </nav>
   <main>
     <app-tasks [tasklist]="tasklist" [user_id]= "user_id" ></app-tasks>

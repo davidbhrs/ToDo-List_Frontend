@@ -1,0 +1,32 @@
+#tasks {
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+table {
+    display: table;
+    width: 80%;
+    table-layout: fixed;
+}
+
+tr {
+    width: 100%;
+}
+
+td {
+    width: 50%;
+}
+
+.symButton {
+    margin-left: 7px;
+    margin-right: 7px;
+    margin-bottom: 10px;
+}
+
+.tasklist {
+    width: 200% !important;
+}
+
+#tasklistName {
+    width: 80% !important;
+}
