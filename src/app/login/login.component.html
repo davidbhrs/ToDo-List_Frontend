@@ -8,7 +8,8 @@
     <mat-form-field>
       <input matInput  #password type="password" placeholder="Passwort" (input)="inputUser.pwd=password.value">
     </mat-form-field>
-    <button id="loginButton" mat-raised-button color="primary" (click)="login()">Anmelden</button>
-    <button mat-raised-button color="basic">Registrieren</button>
+    <button id="loginButton" mat-raised-button color="primary" (click)="login()" [disabled]="logged" >Anmelden</button>
+    <button id="logoutButton" mat-raised-button color="primary" (click)="logout()" [disabled]="notLogged" >Log out</button>
+    
   </form>
 </div>
