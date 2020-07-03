@@ -28,7 +28,7 @@
             <td>Beschreibung:</td>
             <td>
               <mat-form-field class="tasklist">
-                <input matInput [disabled]="deactivateDoneTasks(task)" [(ngModel)]="task.description" placeholder="Beschreibung">
+                <textarea matInput placeholder="Beschreibung" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" [disabled]="deactivateDoneTasks(task)" [(ngModel)]="task.description"></textarea>
               </mat-form-field>
             </td>
           </tr>
@@ -133,7 +133,7 @@
       <br>
       <tr>
         <!--creates a new task with the values from the "form"-->
-        <td colspan="2"><button mat-raised-button color="accent" (click)="createNewTask()">Neue Aufgabe speichern</button></td>
+        <td colspan="2"><button mat-raised-button color="primary" (click)="createNewTask()">Neue Aufgabe speichern</button></td>
       </tr>
     </table>
   
