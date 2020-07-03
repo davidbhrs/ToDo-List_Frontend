@@ -1,0 +1,9 @@
+.wrapper {
+    min-height: height 100%;
+    margin-bottom: 0px;
+}
+
+.footer,
+.push {
+    height: 0px;
+}
